@@ -34,9 +34,13 @@ This project separates the two jobs:
 Tested in the [Wokwi](https://wokwi.com) ESP32 simulator, which emulates the real
 ESP32 chip, its I2C bus, and Wi-Fi with real internet access.
 
-| Simulated circuit (sensor values set with the sliders) | Serial output: both tasks running |
-|---|---|
-| ![Wokwi simulator](docs/images/simulator.png) | ![Serial output](docs/images/serial-output.png) |
+Simulated circuit, with sensor values set by the sliders:
+
+![Wokwi simulator](docs/images/simulator.png)
+
+Serial output, with both tasks running and each reading followed by its POST:
+
+![Serial output](docs/images/serial-output.png)
 
 Each reading arriving at a live HTTP endpoint (webhook.site; IP and URL
 redacted):
