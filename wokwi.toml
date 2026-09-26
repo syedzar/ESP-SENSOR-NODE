@@ -1,0 +1,6 @@
+[wokwi]
+version = 1
+# Simulation uses the esp32dev-sim env (BMP180 in place of BME280, since
+# Wokwi has no simulated BME280 part). Build it with: pio run -e esp32dev-sim
+firmware = ".pio/build/esp32dev-sim/firmware.bin"
+elf = ".pio/build/esp32dev-sim/firmware.elf"

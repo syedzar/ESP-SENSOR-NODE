@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "author": "Zaryan Syed",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "board-bmp180",
+      "id": "bmp180",
+      "top": -30,
+      "left": 150,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [
+      "esp:TX",
+      "$serialMonitor:RX",
+      "",
+      []
+    ],
+    [
+      "esp:RX",
+      "$serialMonitor:TX",
+      "",
+      []
+    ],
+    [
+      "esp:21",
+      "bmp180:SDA",
+      "green",
+      []
+    ],
+    [
+      "esp:22",
+      "bmp180:SCL",
+      "yellow",
+      []
+    ],
+    [
+      "esp:3V3",
+      "bmp180:3.3V",
+      "red",
+      []
+    ],
+    [
+      "esp:GND.1",
+      "bmp180:GND",
+      "black",
+      []
+    ]
+  ]
+}

@@ -1,0 +1,26 @@
+#pragma once
+
+// -----------------------------------------------------------------------
+// Copy this file to "config.h" in the same folder and fill in your own
+// values. config.h is git-ignored so you never commit real credentials.
+// -----------------------------------------------------------------------
+
+// Wi-Fi credentials
+#define WIFI_SSID "your-wifi-ssid"
+#define WIFI_PASSWORD "your-wifi-password"
+#define WIFI_CONNECT_TIMEOUT_MS 10000
+
+// Where readings get POSTed. Point this at your Engineering Test Data
+// Platform API (or a temporary mock endpoint like https://webhook.site
+// while you're first bringing the firmware up).
+#define API_ENDPOINT_URL "http://192.168.1.50:8000/sensor-readings"
+#define DEVICE_ID "esp32-node-01"
+
+// I2C wiring (defaults match the ESP32 DevKitC default I2C pins)
+#define I2C_SDA_PIN 21
+#define I2C_SCL_PIN 22
+#define BME280_I2C_ADDRESS 0x76 // some breakout boards use 0x77 instead
+
+// Sensor sampling
+#define SENSOR_SAMPLE_INTERVAL_MS 5000
+#define SENSOR_QUEUE_LENGTH 10

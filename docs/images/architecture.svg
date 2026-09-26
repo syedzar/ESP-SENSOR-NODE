@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 280" width="960" height="280" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+<style>
+  .bg { fill: #fcfcfb; }
+  .box { fill: #ffffff; stroke: #b9b8b2; stroke-width: 1.5; }
+  .task { fill: #eaf2fc; stroke: #2a78d6; stroke-width: 1.5; }
+  .queue { fill: #fdf0ea; stroke: #eb6834; stroke-width: 1.5; }
+  .chip { fill: none; stroke: #7d7c76; stroke-width: 1.5; stroke-dasharray: 6 4; }
+  .h { fill: #0b0b0b; font-size: 15px; font-weight: 600; }
+  .t { fill: #52514e; font-size: 12.5px; }
+  .edge { fill: #52514e; font-size: 12px; font-style: italic; }
+  .arrow { stroke: #52514e; stroke-width: 2; fill: none; }
+  .head { fill: #52514e; }
+  .slot { fill: #eb6834; }
+  @media (prefers-color-scheme: dark) {
+    .bg { fill: #1a1a19; }
+    .box { fill: #242422; stroke: #5c5b55; }
+    .task { fill: #1d2c40; stroke: #3987e5; }
+    .queue { fill: #3a2419; stroke: #d95926; }
+    .chip { stroke: #8a8983; }
+    .h { fill: #ffffff; }
+    .t, .edge { fill: #c3c2b7; }
+    .arrow { stroke: #c3c2b7; }
+    .head { fill: #c3c2b7; }
+    .slot { fill: #d95926; }
+  }
+</style>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path class="head" d="M0,0 L10,5 L0,10 z"/>
+  </marker>
+</defs>
+<rect class="bg" width="960" height="280" rx="8"/>
+
+<!-- Sensor -->
+<rect class="box" x="20" y="95" width="130" height="90" rx="8"/>
+<text class="h" x="85" y="128" text-anchor="middle">Sensor</text>
+<text class="t" x="85" y="150" text-anchor="middle">BME280 (hardware)</text>
+<text class="t" x="85" y="168" text-anchor="middle">BMP180 (simulator)</text>
+
+<!-- ESP32 boundary -->
+<rect class="chip" x="190" y="30" width="560" height="220" rx="12"/>
+<text class="h" x="210" y="56">ESP32 (dual-core)</text>
+
+<!-- sensorTask -->
+<rect class="task" x="210" y="85" width="150" height="110" rx="8"/>
+<text class="h" x="285" y="115" text-anchor="middle">sensorTask</text>
+<text class="t" x="285" y="137" text-anchor="middle">pinned to core 1</text>
+<text class="t" x="285" y="155" text-anchor="middle">reads every 5 s</text>
+<text class="t" x="285" y="173" text-anchor="middle">never touches Wi-Fi</text>
+
+<!-- Queue -->
+<rect class="queue" x="400" y="95" width="140" height="90" rx="8"/>
+<text class="h" x="470" y="123" text-anchor="middle">FreeRTOS queue</text>
+<text class="t" x="470" y="143" text-anchor="middle">10 readings (~50 s)</text>
+<g>
+  <rect class="slot" x="415" y="158" width="9" height="14" rx="2"/>
+  <rect class="slot" x="426" y="158" width="9" height="14" rx="2"/>
+  <rect class="slot" x="437" y="158" width="9" height="14" rx="2"/>
+  <rect class="slot" x="448" y="158" width="9" height="14" rx="2" opacity=".35"/>
+  <rect class="slot" x="459" y="158" width="9" height="14" rx="2" opacity=".35"/>
+  <rect class="slot" x="470" y="158" width="9" height="14" rx="2" opacity=".35"/>
+  <rect class="slot" x="481" y="158" width="9" height="14" rx="2" opacity=".35"/>
+  <rect class="slot" x="492" y="158" width="9" height="14" rx="2" opacity=".35"/>
+  <rect class="slot" x="503" y="158" width="9" height="14" rx="2" opacity=".35"/>
+  <rect class="slot" x="514" y="158" width="9" height="14" rx="2" opacity=".35"/>
+</g>
+
+<!-- networkTask -->
+<rect class="task" x="580" y="85" width="150" height="110" rx="8"/>
+<text class="h" x="655" y="115" text-anchor="middle">networkTask</text>
+<text class="t" x="655" y="137" text-anchor="middle">pinned to core 0</text>
+<text class="t" x="655" y="155" text-anchor="middle">Wi-Fi + reconnect</text>
+<text class="t" x="655" y="173" text-anchor="middle">JSON → HTTPS POST</text>
+
+<!-- API -->
+<rect class="box" x="790" y="95" width="150" height="90" rx="8"/>
+<text class="h" x="865" y="128" text-anchor="middle">REST API</text>
+<text class="t" x="865" y="150" text-anchor="middle">webhook.site today,</text>
+<text class="t" x="865" y="168" text-anchor="middle">Test Data Platform next</text>
+
+<!-- Arrows -->
+<path class="arrow" d="M150,140 L206,140" marker-end="url(#ah)"/>
+<text class="edge" x="178" y="130" text-anchor="middle">I2C</text>
+<path class="arrow" d="M360,140 L396,140" marker-end="url(#ah)"/>
+<path class="arrow" d="M540,140 L576,140" marker-end="url(#ah)"/>
+<path class="arrow" d="M730,140 L786,140" marker-end="url(#ah)"/>
+<text class="edge" x="770" y="130" text-anchor="middle">HTTPS</text>
+
+<text class="edge" x="380" y="228" text-anchor="middle">send, 0 timeout:</text>
+<text class="edge" x="380" y="243" text-anchor="middle">never waits</text>
+<path class="arrow" d="M378,212 L378,150" stroke-dasharray="3 3"/>
+<text class="edge" x="560" y="228" text-anchor="middle">receive, blocks</text>
+<text class="edge" x="560" y="243" text-anchor="middle">until data arrives</text>
+<path class="arrow" d="M558,212 L558,150" stroke-dasharray="3 3"/>
+</svg>
